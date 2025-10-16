@@ -1,73 +1,81 @@
-# Welcome to your Lovable project
+# 💧 AquaLink – Smart Water Management Web App
 
-## Project info
+AquaLink is a **smart water management and conservation platform** built to help South African households, farmers, and municipalities track, manage, and save water through **IoT-powered monitoring, leak detection, and community engagement**.
 
-**URL**: https://lovable.dev/projects/f1e33dbf-7dd6-4fd1-a163-0c91ed06ee35
+This project was developed as part of the **PachiPanda Challenge (Water Conservation: Making Every Drop Count)** — empowering young innovators to build tech solutions for sustainable resource management.
 
-## How can I edit this code?
+🌐 **Live Project:** [Open in Lovable](https://lovable.dev/projects/f1e33dbf-7dd6-4fd1-a163-0c91ed06ee35)
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+## 🚀 Overview
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/f1e33dbf-7dd6-4fd1-a163-0c91ed06ee35) and start prompting.
+AquaLink helps users **monitor their water usage in real-time**, detect leaks early, and reduce waste using data-driven insights.  
+The platform also encourages **community participation** through leaderboards and sustainability challenges.
 
-Changes made via Lovable will be committed automatically to this repo.
+---
 
-**Use your preferred IDE**
+## 🌍 Key Features
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### 💦 Smart Dashboard
+- Displays daily, weekly, and monthly water usage.
+- Real-time data visualization using charts and graphs.
+- Shows cost estimates and consumption insights.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### 🔍 Leak Detection (IoT Simulation)
+- Simulated IoT flow sensor generates hourly usage data (litres/minute).
+- Detects leaks using continuous flow or abnormal nighttime activity.
+- Displays instant alerts when leaks are detected.
 
-Follow these steps:
+### 📲 Alerts & Notifications
+- Real-time dashboard alerts (pop-ups) and simulated SMS/email notifications.
+- Users can mark leaks as fixed and track water-saving progress.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
+### 🏆 Community Challenge
+- Leaderboard ranking users/communities by water saved.
+- Monthly badges such as “Water Hero” and “Leak Fixer.”
+- Shows collective community impact (“Together we saved X litres”).
+
+### 🌱 Sustainability Insights
+- Offers practical water-saving tips and eco-friendly lifestyle ideas.
+- Visualizes total litres saved by all users combined.
+
+### 🔧 Admin Panel
+- Allows admins to view all users, leaks, and consumption data per area.
+- Generates reports for municipalities and sustainability tracking.
+
+---
+
+## 🧠 Technology Stack
+
+- **Frontend:** React (Vite) + TypeScript  
+- **UI Components:** shadcn/ui + TailwindCSS  
+- **Backend:** Node.js + Express (simulated IoT API endpoint)  
+- **Database:** MongoDB or Firebase (configurable)  
+- **Charts & Visualization:** Chart.js / Recharts  
+- **Data Simulation:** Randomized IoT-like flow data (every 5 seconds)
+
+---
+
+## ⚙️ Setup Instructions
+
+### Prerequisites
+- Node.js & npm installed ([install via nvm](https://github.com/nvm-sh/nvm#installing-and-updating))
+- Git (for cloning this repository)
+
+### Steps
+
+```bash
+# 1️⃣ Clone the repository
 git clone <YOUR_GIT_URL>
 
-# Step 2: Navigate to the project directory.
+# 2️⃣ Navigate to the project folder
 cd <YOUR_PROJECT_NAME>
 
-# Step 3: Install the necessary dependencies.
-npm i
+# 3️⃣ Install dependencies
+npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# 4️⃣ Start the development server
 npm run dev
-```
 
-**Edit a file directly in GitHub**
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/f1e33dbf-7dd6-4fd1-a163-0c91ed06ee35) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
