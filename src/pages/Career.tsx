@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -22,9 +22,9 @@ export default function Career() {
     experience: "",
   });
 
-  useState(() => {
+  useEffect(() => {
     loadTechnicians();
-  });
+  }, []);
 
   const loadTechnicians = async () => {
     const { data } = await supabase
