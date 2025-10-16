@@ -60,6 +60,27 @@ export default function Dashboard() {
       });
     }
 
+    // Subscribe to real-time updates for community stats
+    const channel = supabase
+      .channel('community-stats-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: 'UPDATE',
+          schema: 'public',
+          table: 'community_stats',
+          filter: `user_id=eq.${userId}`
+        },
+        (payload) => {
+          setStats({
+            totalSaved: Number(payload.new.total_saved_litres) || 0,
+            leaksFixed: payload.new.leaks_fixed || 0,
+            communityRank: payload.new.rank || 0,
+          });
+        }
+      )
+      .subscribe();
+
     // Generate mock weekly data for charts
     const mockWeeklyData = [
       { day: "Mon", usage: 280 },
@@ -77,7 +98,10 @@ export default function Dashboard() {
       setTodayUsage((prev) => Math.min(prev + Math.random() * 5, 400));
     }, 10000);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      supabase.removeChannel(channel);
+    };
   };
 
   if (!user) {

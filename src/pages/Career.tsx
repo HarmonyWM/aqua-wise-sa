@@ -275,7 +275,13 @@ export default function Career() {
                           </div>
                         </div>
 
-                        <Button className="w-full mt-4" variant="outline">
+                        <Button 
+                          className="w-full mt-4" 
+                          variant="outline"
+                          onClick={() => {
+                            window.location.href = `mailto:${tech.email}?subject=Water Technician Service Request&body=Hi ${tech.full_name},%0D%0A%0D%0AI would like to request your services for water conservation and leak repair.%0D%0A%0D%0APlease contact me at your earliest convenience.`;
+                          }}
+                        >
                           Contact Technician
                         </Button>
                       </CardContent>

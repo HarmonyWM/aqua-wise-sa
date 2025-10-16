@@ -81,13 +81,48 @@ export default function LeakDetector({ userId }: LeakDetectorProps) {
   };
 
   const markAsFixed = async (leakId: string) => {
+    if (!userId) return;
+
+    // Get the leak details to calculate water saved
+    const { data: leakData } = await supabase
+      .from("leak_detections")
+      .select("*")
+      .eq("id", leakId)
+      .single();
+
+    if (!leakData) return;
+
+    // Calculate water saved (estimate based on leak duration and flow rate)
+    const detectedTime = new Date(leakData.detected_at).getTime();
+    const fixedTime = Date.now();
+    const durationHours = (fixedTime - detectedTime) / (1000 * 60 * 60);
+    const waterSaved = Math.round(leakData.flow_rate * 60 * durationHours * 0.3); // 30% of potential waste prevented
+
+    // Update leak status
     const { error } = await supabase
       .from("leak_detections")
       .update({ status: "fixed", fixed_at: new Date().toISOString() })
       .eq("id", leakId);
 
     if (!error) {
-      toast.success("Leak marked as fixed");
+      // Update community stats
+      const { data: currentStats } = await supabase
+        .from("community_stats")
+        .select("*")
+        .eq("user_id", userId)
+        .single();
+
+      if (currentStats) {
+        await supabase
+          .from("community_stats")
+          .update({
+            leaks_fixed: (currentStats.leaks_fixed || 0) + 1,
+            total_saved_litres: (Number(currentStats.total_saved_litres) || 0) + waterSaved,
+          })
+          .eq("user_id", userId);
+      }
+
+      toast.success(`Leak fixed! You saved ${waterSaved}L of water 💧`);
       loadLeakHistory();
     }
   };
